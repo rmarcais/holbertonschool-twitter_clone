@@ -10,6 +10,10 @@ class SideBarMenu extends StatefulWidget {
 class _SideBarMenu extends State<SideBarMenu> {
   @override
   Widget build(BuildContext context) {
+    TextStyle defaultTextStyle = const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.bold,
+    );
     return ListView(
       children: [
         DrawerHeader(
@@ -53,45 +57,33 @@ class _SideBarMenu extends State<SideBarMenu> {
         ),
         ListTile(
           leading: const Icon(Icons.person),
-          title: const Text(
+          title: Text(
             'Profile',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
+            style: defaultTextStyle,
           ),
           onTap: () {},
         ),
         ListTile(
           leading: const Icon(Icons.list),
-          title: const Text(
+          title: Text(
             'Lists',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
+            style: defaultTextStyle,
           ),
           onTap: () {},
         ),
         ListTile(
           leading: const Icon(Icons.bookmark),
-          title: const Text(
+          title: Text(
             'Bookmark',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
+            style: defaultTextStyle,
           ),
           onTap: () {},
         ),
         ListTile(
           leading: const Icon(Icons.flash_on),
-          title: const Text(
+          title: Text(
             'Moments',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
+            style: defaultTextStyle,
           ),
           onTap: () {},
         ),
@@ -103,32 +95,23 @@ class _SideBarMenu extends State<SideBarMenu> {
         ),
         const SizedBox(height: 8),
         ListTile(
-          title: const Text(
+          title: Text(
             'Settings and privacy',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
+            style: defaultTextStyle,
           ),
           onTap: () {},
         ),
         ListTile(
-          title: const Text(
+          title: Text(
             'Help Center',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
+            style: defaultTextStyle,
           ),
           onTap: () {},
         ),
         ListTile(
-          title: const Text(
+          title: Text(
             'Logout',
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
+            style: defaultTextStyle,
           ),
           onTap: () {},
         ),
