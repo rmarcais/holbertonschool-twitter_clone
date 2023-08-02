@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:twitter/widgets/entry_field.dart';
 import 'package:twitter/widgets/flat_button.dart';
 import 'package:twitter/screens/signup_screen.dart';
+import 'package:twitter/screens/forgot_password_screen.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({ super.key });
@@ -75,7 +76,12 @@ class _SignIn extends State<SignIn> {
               ),
               const SizedBox(height: 20),
               TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ForgetPassword()),
+                  );
+                },
                 child: const Text(
                   "Forget password?",
                   style: TextStyle(
