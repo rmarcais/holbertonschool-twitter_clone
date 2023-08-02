@@ -13,7 +13,8 @@ class CustomFlatButton extends StatelessWidget {
       child: Text(
         label,
         style: const TextStyle(
-          fontFamily: "Raleway",
+          fontFamily: 'Raleway',
+          fontWeight: FontWeight.w900,
           fontSize: 30,
           height: 1,
         ),
