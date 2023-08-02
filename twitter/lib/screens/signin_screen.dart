@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:twitter/widgets/entry_field.dart';
 import 'package:twitter/widgets/flat_button.dart';
+import 'package:twitter/screens/home_screen.dart';
 import 'package:twitter/screens/signup_screen.dart';
 import 'package:twitter/screens/forgot_password_screen.dart';
 
@@ -45,7 +46,7 @@ class _SignIn extends State<SignIn> {
                   "Sign In",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 40,
+                    fontSize: 30,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -57,7 +58,15 @@ class _SignIn extends State<SignIn> {
               const SizedBox(height: 20),
               CustomEntryField(hint: "Enter password", controller: _passwordController!, isPassword: true),
               const SizedBox(height: 40),
-              CustomFlatButton(label: "Submit", onPressed: () {}),
+              CustomFlatButton(
+                label: "Submit",
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const HomeScreen()),
+                  );
+                },
+              ),
               const SizedBox(height: 50),
               TextButton(
                 onPressed: () {

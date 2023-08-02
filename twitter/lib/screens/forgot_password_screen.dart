@@ -40,7 +40,7 @@ class _ForgetPassword extends State<ForgetPassword> {
           style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
-            fontSize: 25
+            fontSize: 18
           ),
         ),
       ),
@@ -57,7 +57,7 @@ class _ForgetPassword extends State<ForgetPassword> {
                   "Forget Password",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 40,
+                    fontSize: 30,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -68,7 +68,7 @@ class _ForgetPassword extends State<ForgetPassword> {
                   "Enter your email address below to receive password reset instructions.",
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    fontSize: 25,
+                    fontSize: 18,
                     color: Colors.grey
                   ),
                 ),

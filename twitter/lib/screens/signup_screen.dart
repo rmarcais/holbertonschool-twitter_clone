@@ -50,7 +50,7 @@ class _SignUp extends State<SignUp> {
           style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
-            fontSize: 25
+            fontSize: 18
           ),
         ),
       ),
