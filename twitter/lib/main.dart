@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        Provider(create: (_) => SharedState()),
+        ChangeNotifierProvider(create: (_) => SharedState()),
       ],
       child: const MaterialApp(
         title: "Twitter clone",
