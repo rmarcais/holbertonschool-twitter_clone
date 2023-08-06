@@ -70,7 +70,7 @@ class PostWidget extends StatelessWidget {
                         color: Colors.grey
                       ),
                     ),
-                    const SizedBox(width: 30),
+                    const SizedBox(width: 10),
                     const Icon(
                       Icons.more_horiz,
                       size: 25,
