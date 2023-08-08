@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:twitter/providers/auth_state.dart';
+import 'package:twitter/screens/signin_screen.dart';
 
 class SideBarMenu extends StatefulWidget {
   const SideBarMenu({ super.key });
@@ -10,6 +12,7 @@ class SideBarMenu extends StatefulWidget {
 class _SideBarMenu extends State<SideBarMenu> {
   @override
   Widget build(BuildContext context) {
+    final Auth auth = Auth();
     TextStyle defaultTextStyle = const TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.bold,
@@ -113,7 +116,13 @@ class _SideBarMenu extends State<SideBarMenu> {
             'Logout',
             style: defaultTextStyle,
           ),
-          onTap: () {},
+          onTap: () async {
+            await auth.logout();
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SignIn()),
+            );
+          },
         ),
       ],
     );

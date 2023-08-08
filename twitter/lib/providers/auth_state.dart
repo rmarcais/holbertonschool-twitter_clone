@@ -50,4 +50,16 @@ class Auth extends ChangeNotifier {
       return Errors.error;
     }
   }
+
+  logout() async {
+    await auth.signOut();
+    notifyListeners();
+  }
+
+  checkAuthentication() {
+    if (auth.currentUser != null) {
+      return true;
+    }
+    return false;
+  }
 }
