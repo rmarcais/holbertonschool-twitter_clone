@@ -37,7 +37,7 @@ class _SignUp extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
-    final Auth _auth = Auth();
+    final Auth auth = Auth();
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -77,7 +77,7 @@ class _SignUp extends State<SignUp> {
                 CustomEntryField(hint: "Confirm password", controller: _confirmController!, isPassword: true),
                 const SizedBox(height: 20),
                 CustomFlatButton(label: "Submit", onPressed: () async {
-                  final res = await _auth.attemptSignUp(
+                  final res = await auth.attemptSignUp(
                     _emailController?.text,
                     _nameController?.text,
                     _passwordController?.text,

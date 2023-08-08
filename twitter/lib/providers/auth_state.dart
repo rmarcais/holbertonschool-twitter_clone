@@ -35,4 +35,19 @@ class Auth extends ChangeNotifier {
       return Errors.error;
     }
   }
+
+  attemptLogin(email, password) async {
+    try {
+      await auth.signInWithEmailAndPassword(email: email, password: password);
+      return Errors.none;
+    } on FirebaseException catch (e) {
+      if (e.code == 'invalid-email') {
+        return Errors.noUserError;
+      } else if (e.code == 'wrong-password') {
+        return Errors.wrongError;
+      }
+    } catch (e) {
+      return Errors.error;
+    }
+  }
 }

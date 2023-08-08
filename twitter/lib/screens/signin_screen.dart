@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:twitter/widgets/bar_menu.dart';
 import 'package:twitter/widgets/entry_field.dart';
 import 'package:twitter/widgets/flat_button.dart';
+import 'package:twitter/providers/auth_state.dart';
 import 'package:twitter/screens/signup_screen.dart';
 import 'package:twitter/screens/forgot_password_screen.dart';
 
@@ -32,6 +33,7 @@ class _SignIn extends State<SignIn> {
 
   @override
   Widget build(BuildContext context) {
+    Auth auth = Auth();
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 30),
@@ -60,12 +62,30 @@ class _SignIn extends State<SignIn> {
               const SizedBox(height: 40),
               CustomFlatButton(
                 label: "Submit",
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const BarMenu()),
-                  );
-                },
+                onPressed: () async {
+                  final res = await auth.attemptLogin(_emailController!.text, _passwordController!.text);
+                  if (res == Errors.none) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const BarMenu()),
+                    );
+                  } else {
+                    String errorMessage = "";
+                    if (res == Errors.noUserError) {
+                      errorMessage = "No user found for that email!";
+                    } else if (res == Errors.wrongError) {
+                      errorMessage = "Wrong password!";
+                    } else if (res == Errors.error) {
+                      errorMessage = "Failed to Login! Please try later";
+                    } else {
+                      errorMessage = "You need to fill each field to submit";
+                    }
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(errorMessage), backgroundColor: Colors.red,)
+                    );
+                  }
+                }
+                  
               ),
               const SizedBox(height: 50),
               TextButton(
