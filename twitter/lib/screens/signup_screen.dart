@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:twitter/widgets/entry_field.dart';
 import 'package:twitter/widgets/flat_button.dart';
+import 'package:twitter/providers/auth_state.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({ super.key });
@@ -36,6 +37,7 @@ class _SignUp extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
+    final Auth _auth = Auth();
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -74,7 +76,35 @@ class _SignUp extends State<SignUp> {
                 const SizedBox(height: 10),
                 CustomEntryField(hint: "Confirm password", controller: _confirmController!, isPassword: true),
                 const SizedBox(height: 20),
-                CustomFlatButton(label: "Submit", onPressed: () {}),
+                CustomFlatButton(label: "Submit", onPressed: () async {
+                  final res = await _auth.attemptSignUp(
+                    _emailController?.text,
+                    _nameController?.text,
+                    _passwordController?.text,
+                    _confirmController?.text
+                  );
+                  if (res == Errors.none) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Account Created!"))
+                    );
+                  } else {
+                    String errorMessage = "";
+                    if (res == Errors.weakError) {
+                      errorMessage = "The password provided is too weak.";
+                    } else if (res == Errors.matchError) {
+                      errorMessage = "Passwords doesn't match";
+                    } else if (res == Errors.existsError) {
+                      errorMessage = "An account already exists with that email.";
+                    } else if (res == Errors.error) {
+                      errorMessage = "Failed to create account! Please try later";
+                    } else {
+                      errorMessage = "You need to fill each field to submit";
+                    }
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text(errorMessage), backgroundColor: Colors.red,)
+                    );
+                  }
+                }),
               ],
             ),
           ),

@@ -7,20 +7,20 @@ class User {
   String? imageUrl;
   int? followers;
   int? following;
-  List<String>? followersList;
-  List<String>? followingList;
+  List<String>? followersList = [];
+  List<String>? followingList = [];
 
   User({
     required this.key,
-    required this.userID,
+    this.userID,
     required this.email,
-    required this.userName,
+    this.userName,
     required this.displayName,
-    required this.imageUrl,
-    required this.followers,
-    required this.following,
-    required this.followersList,
-    required this.followingList
+    this.imageUrl,
+    this.followers = 0,
+    this.following = 0,
+    this.followersList,
+    this.followingList
   });
 
   User.fromJson(Map<dynamic, dynamic> map) {
