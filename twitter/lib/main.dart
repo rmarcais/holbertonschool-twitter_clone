@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:twitter/providers/auth_state.dart';
 import 'package:twitter/screens/signin_screen.dart';
 import 'package:twitter/providers/share_state.dart';
 
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => SharedState()),
+        ChangeNotifierProvider(create: (_) => Auth())
       ],
       child: const MaterialApp(
         title: "Twitter clone",
