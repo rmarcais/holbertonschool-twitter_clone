@@ -62,4 +62,12 @@ class Auth extends ChangeNotifier {
     }
     return false;
   }
+
+  Future<User?> getCurrentUserModel() async {
+    final data = await usersRef.where('key', isEqualTo: auth.currentUser?.uid).get();
+    if (data.docs.isNotEmpty) {
+      return data.docs.first.data();
+    }
+    return null;
+  }
 }

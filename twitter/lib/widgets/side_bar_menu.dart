@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:twitter/models/user.dart';
 import 'package:twitter/providers/auth_state.dart';
 import 'package:twitter/screens/signin_screen.dart';
 
@@ -10,6 +11,25 @@ class SideBarMenu extends StatefulWidget {
 }
 
 class _SideBarMenu extends State<SideBarMenu> {
+  @override
+  void initState() {
+    getUserAsync();
+    super.initState();
+  }
+
+  User? currentUser;
+
+  getUserAsync() async {
+    try {
+      currentUser = await Auth().getCurrentUserModel();
+    } catch(e) {
+      print(e);
+    }
+    if(mounted) {
+      setState(() {});
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final Auth auth = Auth();
@@ -31,27 +51,27 @@ class _SideBarMenu extends State<SideBarMenu> {
               Container(
                 width: 70,
                 height: 70,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
                         image: NetworkImage(
-                            "https://media.licdn.com/dms/image/D4E03AQFax6fciha3yg/profile-displayphoto-shrink_800_800/0/1675347507006?e=2147483647&v=beta&t=HWpYg68Lvvbh7UP6VeaFpRSrnX_xXHszsjwPGqIfFZ0")
+                            currentUser?.imageUrl ?? "https://media.licdn.com/dms/image/D4E03AQFax6fciha3yg/profile-displayphoto-shrink_800_800/0/1675347507006?e=2147483647&v=beta&t=HWpYg68Lvvbh7UP6VeaFpRSrnX_xXHszsjwPGqIfFZ0")
                     )
                 )
               ),
               const SizedBox(height: 10),
-              const Text(
-                "Rémi Marçais",
-                style: TextStyle(
+              Text(
+                currentUser?.displayName ?? "",
+                style: const TextStyle(
                   color: Colors.grey,
                   fontSize: 18,
                   fontWeight: FontWeight.bold
                 ),
               ),
               const SizedBox(height: 10),
-              const Text(
-                "524 Followers 321 Following",
-                style: TextStyle(
+              Text(
+                "${currentUser?.followers} Followers ${currentUser?.following} Following",
+                style: const TextStyle(
                   fontSize: 16,
                 ),
               ),
